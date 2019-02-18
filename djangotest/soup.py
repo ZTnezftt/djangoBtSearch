@@ -2,9 +2,14 @@ from lxml import etree
 import json
 from urllib.parse import quote
 from urllib import request
-import redis
 
 
+# 解析的方法
+
+# obj dict
+# name 搜索的名字
+# sort 排序方式 date or sort
+# page 页码
 def parse(obj, name, sort, page):
     print("--------开始解析----------")
     url = obj['url'].format(name="" + quote(name, encoding='utf-8'),
@@ -37,7 +42,7 @@ def parse(obj, name, sort, page):
             size = i.xpath(itemSize)[0].replace('\\xa0', '')
             hot = i.xpath(itemHot)[0].replace('\\xa0', '')
             date = i.xpath(itemDate)[0].replace('\\xa0', '')
-            torrent = i.xpath(itemTorrent)[0]+""
+            torrent = i.xpath(itemTorrent)[0] + ""
             item['title'] = title
             item['size'] = size
             item['hot'] = hot
@@ -50,7 +55,6 @@ def parse(obj, name, sort, page):
     res['status'] = 200
     res['data'] = data
     return json.dumps(res)
-
 
 
 def init():

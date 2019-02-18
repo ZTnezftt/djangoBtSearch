@@ -16,17 +16,11 @@ Including another URLconf
 from django.urls import path
 
 from . import view
-from . import HelloWorld
-from . import db
 from . import DbHelper
 from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/a', view.hello),
-    path('hello', HelloWorld.hello),
-    path('insert', db.testdb),
-    path('select', db.getDb),
-    path('s', db.g),
     path('insertDb', DbHelper.insert),
     path("selectDb", DbHelper.select),
     path('insert2/<name>/<psw>', DbHelper.insert2),
